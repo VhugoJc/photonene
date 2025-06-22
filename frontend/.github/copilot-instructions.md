@@ -1,0 +1,3 @@
+<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
+
+This is a Next.js project for a photographer brand called Photo Nene. Use dark mode, neon green accents, 3D visuals, motion UI, gamer/futuristic aesthetic, and modern web design. Use Tailwind CSS for styling, Framer Motion for animations, and react-three-fiber for 3D elements. The homepage should not display photo galleries directly. Include a dedicated Albums section, where each album opens into a dynamic, responsive masonry photo gallery.
