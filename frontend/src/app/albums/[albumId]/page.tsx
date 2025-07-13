@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import PhotoNeneFooter from "@/components/PhotoNeneFooter";
 import PageLoader from "@/components/PageLoader";
 
@@ -91,7 +92,7 @@ export default function AlbumGalleryPage() {
                 a.click();
                 a.remove();
                 window.URL.revokeObjectURL(url);
-            } catch (err) {
+            } catch {
                 alert('Failed to download ' + src);
             }
         }
@@ -171,9 +172,11 @@ export default function AlbumGalleryPage() {
                                         role="button"
                                         aria-label={selectMode ? (selectedImages.includes(src) ? 'Deselect image' : 'Select image') : 'Open image'}
                                     >
-                                        <img
+                                        <Image
                                             src={src}
                                             alt={album.title + " image " + (idx + 1)}
+                                            width={600}
+                                            height={400}
                                             className="w-full h-full object-cover object-center hover:opacity-90 transition-opacity duration-200 bg-[#181818]"
                                             loading="lazy"
                                         />
@@ -194,9 +197,11 @@ export default function AlbumGalleryPage() {
                             onClick={() => setModalImg(null)}
                         >
                             <div className="relative flex items-center justify-center w-full h-full">
-                                <img
+                                <Image
                                     src={modalImg}
                                     alt="Full size preview"
+                                    width={1200}
+                                    height={800}
                                     className="max-h-[90vh] max-w-[95vw] rounded-xl cursor-zoom-out"
                                     onClick={e => e.stopPropagation()}
                                 />
@@ -215,7 +220,7 @@ export default function AlbumGalleryPage() {
                                             a.click();
                                             a.remove();
                                             window.URL.revokeObjectURL(url);
-                                        } catch (err) {
+                                        } catch {
                                             alert('Failed to download image.');
                                         }
                                     }}

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import PhotoNeneFooter from "@/components/PhotoNeneFooter";
 
 const albums = [
@@ -88,9 +89,11 @@ export default function AlbumsPage() {
 							className={`group border border-[#222] rounded-xl overflow-hidden bg-[#101010] hover:border-[#39ff14] transition-colors flex flex-col ${albumVariants[idx]}`}
 						>
 							<div className="relative w-full h-full">
-								<img
+								<Image
 									src={album.cover}
 									alt={album.title}
+									width={800}
+									height={600}
 									className="w-full h-full object-cover object-center group-hover:opacity-90 transition-opacity duration-200"
 									loading="lazy"
 								/>

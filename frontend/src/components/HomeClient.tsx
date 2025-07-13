@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const Starfield3D = dynamic(() => import("@/components/Starfield3D"), { ssr: false });
 
@@ -33,9 +34,9 @@ export default function HomeClient() {
       </div>
       <header className="flex items-center justify-between px-6 py-6">
         <span className="text-2xl font-bold tracking-tight text-white">Photo Nene</span>
-        <a href="/albums" className="text-[#39ff14] border border-[#39ff14] rounded-full px-4 py-1 text-sm hover:bg-[#39ff14] hover:text-black transition-colors">
+        <Link href="/albums" className="text-[#39ff14] border border-[#39ff14] rounded-full px-4 py-1 text-sm hover:bg-[#39ff14] hover:text-black transition-colors">
           Albums
-        </a>
+        </Link>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <motion.h1
@@ -54,15 +55,18 @@ export default function HomeClient() {
         >
           Photo Nene blends nature, technology, and self-growth through a futuristic lens. Visual stories captured with purpose, energy, and evolution in every frame.
         </motion.p>
-        <motion.a
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          href="/albums"
-          className="inline-block border border-[#39ff14] rounded-full px-6 py-2 text-[#39ff14] hover:bg-[#39ff14] hover:text-black font-medium transition-colors"
         >
-          View Albums
-        </motion.a>
+          <Link
+            href="/albums"
+            className="inline-block border border-[#39ff14] rounded-full px-6 py-2 text-[#39ff14] hover:bg-[#39ff14] hover:text-black font-medium transition-colors"
+          >
+            View Albums
+          </Link>
+        </motion.div>
       </main>
       <footer className="flex flex-col items-center gap-2 py-4 text-xs text-[#baffc9] border-t border-[#222] mt-auto">
         <div className="flex gap-4 mb-1">
