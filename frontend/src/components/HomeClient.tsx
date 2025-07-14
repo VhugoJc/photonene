@@ -45,7 +45,7 @@ export default function HomeClient() {
           transition={{ duration: 0.7 }}
           className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-white"
         >
-          Nature. Tech. Growth — Captured.
+          Nature. Tech. Growth
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 10 }}

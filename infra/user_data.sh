@@ -26,11 +26,3 @@ npm run build
 # Install PM2 and start the application
 npm install -g pm2
 pm2 start npm --name nodeapp -- start
-
-# Save PM2 configuration and make it persistent
-pm2 save
-pm2 startup systemd -u ubuntu --hp /home/ubuntu
-EOF
-
-# Execute pm2 startup with sudo to properly register the service
-sudo env PATH=$PATH:/home/ubuntu/.nvm/versions/node/v22.17.0/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
