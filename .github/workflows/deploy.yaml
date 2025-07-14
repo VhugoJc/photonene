@@ -20,14 +20,26 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
-      - name: Install PM2 globally (if not installed)
+      - name: Ensure PM2 is installed globally
         run: |
           if ! command -v pm2 &> /dev/null; then
+            echo "Installing PM2..."
             npm install -g pm2
+          else
+            echo "PM2 already installed"
           fi
 
-      - name: Restart or start app with PM2 (non-blocking)
+      - name: Restart or start app with PM2
+        working-directory: ./frontend
         run: |
-          cd frontend
-          pm2 delete nodeapp || true
-          pm2 start npm --name nodeapp -- start
+          pm2 describe nodeapp > /dev/null 2>&1
+          if [ $? -eq 0 ]; then
+            echo "Restarting existing app"
+            pm2 restart nodeapp
+          else
+            echo "Starting app"
+            pm2 start npm --name nodeapp -- start
+          fi
+
+      - name: Save PM2 state
+        run: pm2 save
