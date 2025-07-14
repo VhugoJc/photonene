@@ -11,35 +11,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          clean: true
 
       - name: Install dependencies
-        working-directory: ./frontend
         run: npm install
+        working-directory: ./frontend
 
       - name: Build application
-        working-directory: ./frontend
         run: npm run build
+        working-directory: ./frontend
 
-      - name: Ensure PM2 is installed globally
+      - name: Install PM2 globally (if not installed)
         run: |
           if ! command -v pm2 &> /dev/null; then
-            echo "Installing PM2..."
             npm install -g pm2
-          else
-            echo "PM2 already installed"
           fi
 
-      - name: Restart or start app with PM2
-        working-directory: ./frontend
+      - name: Restart or start Next.js app with PM2
         run: |
-          pm2 describe nodeapp > /dev/null 2>&1
-          if [ $? -eq 0 ]; then
-            echo "Restarting existing app"
-            pm2 restart nodeapp
-          else
-            echo "Starting app"
-            pm2 start npm --name nodeapp -- start
-          fi
+          cd frontend
+          pm2 delete nodeapp || true
+          pm2 start npm --name nodeapp -- start
+          pm2 save
 
-      - name: Save PM2 state
-        run: pm2 save
+      - name: Debug PM2 list
+        run: pm2 list
