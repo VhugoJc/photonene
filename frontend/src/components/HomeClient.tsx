@@ -53,7 +53,7 @@ export default function HomeClient() {
           transition={{ delay: 0.2, duration: 0.7 }}
           className="text-[#baffc9] text-lg max-w-xl mb-8"
         >
-          Photo Nene blends nature, technology, and self-growth through a futuristic lens. Visual stories captured with purpose, energy, and evolution in every frame.
+          <strong>PN</strong> - Photo Nene blends nature, technology, and self-growth through a futuristic lens. Visual stories captured with purpose, energy, and evolution in every frame.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
